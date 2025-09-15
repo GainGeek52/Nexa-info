@@ -30,7 +30,7 @@ function App() {
     },
     {
       name: 'Govinda Tiwari',
-      role: 'UI/UX Developer',
+      role: 'Full stack developer',
       description: 'Crafting beautiful and intuitive user interfaces with React and Tailwind. Passionate about creating seamless user experiences and modern design systems.',
       linkedin: 'https://www.linkedin.com/in/chirayu-tiwari-539a60282/',
       github: 'https://github.com/govinda-vk'
