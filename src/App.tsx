@@ -315,83 +315,140 @@ function App() {
         </div>
       </section>
 
-            {/* Demo Video Section */}
-      <section id="demo-video" className="py-32 bg-gray-50 relative">
-        <div className="container mx-auto px-8 max-w-6xl">
-          <div className="text-center mb-20">
-            <span className="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-4 block">Live Demo</span>
-            <h2 className="text-6xl font-black mb-8 text-black tracking-tight">
-              See NEXA in Action
-            </h2>
-            <p className="text-xl text-gray-600 leading-relaxed">Experience the power of AI-driven business transformation</p>
-          </div>
-          
-          <div className="max-w-5xl mx-auto">
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-white rounded-3xl p-3 shadow-2xl">
-                <div className="aspect-video bg-black rounded-2xl flex items-center justify-center relative overflow-hidden">
-                  {!isVideoPlaying && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/80 to-black/60 z-10">
-                      <button 
-                        onClick={handleVideoPlay}
-                        className="group/play bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center gap-3"
-                      >
-                        <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center group-hover/play:scale-110 transition-transform duration-300">
-                          <Play className="w-6 h-6 text-white ml-0.5" fill="white" />
-                        </div>
-                        <span className="text-lg">Play Demo</span>
-                      </button>
-                    </div>
-                  )}
-                  
-                  {isVideoPlaying && (
-                    <div className="absolute top-4 right-4 z-10 flex gap-2">
-                      <button 
-                        onClick={() => {
-                          if (videoRef.current) {
-                            videoRef.current.muted = !videoRef.current.muted;
-                          }
-                        }}
-                        className="bg-white/90 backdrop-blur-sm text-black p-2 rounded-xl hover:bg-white transition-all duration-300"
-                      >
-                        {videoRef.current?.muted ? (
-                          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clipRule="evenodd" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-                          </svg>
-                        ) : (
-                          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 6a9 9 0 010 12m-4.5-9.5L12 3v18l-4.5-4.5H4a1 1 0 01-1-1v-7a1 1 0 011-1h3.5z" />
-                          </svg>
-                        )}
-                      </button>
-                      <button 
-                        onClick={handleVideoPause}
-                        className="bg-white/90 backdrop-blur-sm text-black p-2 rounded-xl hover:bg-white transition-all duration-300"
-                      >
-                        <X className="w-6 h-6" />
-                      </button>
-                    </div>
-                  )}
-                  
-                  <video 
-                    ref={videoRef}
-                    className="w-full h-full object-cover rounded-2xl"
-                    controls={isVideoPlaying}
-                    muted
-                    onEnded={() => setIsVideoPlaying(false)}
-                  >
-                    {/* Replace with your actual video source */}
-                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+      {/* Demo Video Section */}
+<section id="demo-video" className="py-32 bg-gray-50 relative">
+  <div className="container mx-auto px-8 max-w-6xl">
+    <div className="text-center mb-20">
+      <span className="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-4 block">Live Demo</span>
+      <h2 className="text-6xl font-black mb-8 text-black tracking-tight">
+        See NEXA in Action
+      </h2>
+      <p className="text-xl text-gray-600 leading-relaxed">Experience the power of AI-driven business transformation</p>
+    </div>
+    
+    <div className="max-w-5xl mx-auto">
+      <div className="relative group">
+        <div className="absolute -inset-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+        <div className="relative bg-white rounded-3xl p-3 shadow-2xl">
+          <div className="aspect-video bg-black rounded-2xl flex items-center justify-center relative overflow-hidden">
+            {!isVideoPlaying ? (
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/80 to-black/60 z-10">
+                <button 
+                  onClick={handleVideoPlay}
+                  className="group/play bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center gap-3"
+                >
+                  <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center group-hover/play:scale-110 transition-transform duration-300">
+                    <Play className="w-6 h-6 text-white ml-0.5" fill="white" />
+                  </div>
+                  <span className="text-lg">Play Demo</span>
+                </button>
+              </div>
+            ) : (
+              <div className="absolute top-4 right-4 z-10 flex gap-2">
+                <button 
+                  onClick={handleVideoPause}
+                  className="bg-white/90 backdrop-blur-sm text-black p-2 rounded-xl hover:bg-white transition-all duration-300"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+            )}
+            
+            {isVideoPlaying ? (
+              <iframe 
+                src="/videos/demo.mp4" 
+                className="w-full h-full rounded-2xl"
+                frameBorder="0"
+                allowFullScreen
+                title="NEXA Demo Video"
+              ></iframe>
+            ) : (
+              <div className="w-full h-full bg-gray-900 rounded-2xl flex items-center justify-center">
+                <div className="text-center text-white p-8">
+                  <Play className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                  <p className="text-lg">Click to play demo video</p>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+      {/* Business Model Canvas Section */}
+<section className="py-32 bg-white relative overflow-hidden">
+  <div className="container mx-auto px-8 max-w-6xl">
+    <div className="text-center mb-20">
+      <span className="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-4 block">Strategy</span>
+      <h2 className="text-6xl font-black mb-8 text-black tracking-tight">
+        Business Model Canvas
+      </h2>
+      <p className="text-xl text-gray-600 leading-relaxed">Our strategic approach to market success and sustainable growth</p>
+    </div>
+    
+    <div className="max-w-6xl mx-auto">
+      <div className="relative group">
+        <div className="absolute -inset-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+        <div className="relative bg-white rounded-3xl p-8 shadow-2xl">
+          <div className="aspect-[4/3] bg-gray-100 rounded-2xl flex items-center justify-center border border-gray-300 mb-8 overflow-hidden">
+            <iframe 
+              src="/docs/Nexa Business Model Canvas.pdf" 
+              title="Business Model Canvas" 
+              className="w-full h-full rounded-xl" 
+              style={{ border: 'none' }}
+            ></iframe>
+          </div>
+          
+          <div className="text-center">
+            <a href="/docs/Nexa Business Model Canvas.pdf" download className="inline-flex items-center gap-3 bg-black hover:bg-gray-900 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+              <Download className="w-5 h-5" />
+              Download Canvas PDF
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+      {/* Presentation Section */}
+<section className="py-32 bg-gray-50 relative">
+  <div className="container mx-auto px-8 max-w-6xl">
+    <div className="text-center mb-20">
+      <span className="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-4 block">Documentation</span>
+      <h2 className="text-6xl font-black mb-8 text-black tracking-tight">
+        Project Presentation
+      </h2>
+      <p className="text-xl text-gray-600 leading-relaxed">Comprehensive overview of NEXA's features and technical implementation</p>
+    </div>
+    
+    <div className="max-w-6xl mx-auto">
+      <div className="relative group">
+        <div className="absolute -inset-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+        <div className="relative bg-white rounded-3xl p-8 shadow-2xl">
+          <div className="aspect-video bg-gray-100 rounded-2xl flex items-center justify-center border border-gray-300 mb-8 overflow-hidden">
+            <iframe 
+              src="/docs/ppt.pdf" 
+              title="Project Presentation" 
+              className="w-full h-full rounded-xl" 
+              style={{ border: 'none' }}
+            ></iframe>
+          </div>
+          
+          <div className="text-center">
+            <a href="/docs/ppt.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-black hover:bg-gray-900 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+              <ExternalLink className="w-5 h-5" />
+              View Full Presentation
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Tech Stack Section */}
       <section className="py-32 bg-white relative overflow-hidden">
@@ -497,7 +554,7 @@ function App() {
         </div>
       </section>
 
-           {/* CTA Section */}
+      {/* CTA Section */}
       <section className="py-32 bg-black relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black"></div>
         <div className="container mx-auto px-8 max-w-4xl relative z-10 text-center">
@@ -563,6 +620,22 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Custom styles for 3D flip effect */}
+      <style>{`
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        .transform-style-preserve-3d {
+          transform-style: preserve-3d;
+        }
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+        .backface-hidden {
+          backface-visibility: hidden;
+        }
+      `}</style>
     </div>
   );
 }
